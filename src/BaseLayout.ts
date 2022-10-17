@@ -11,7 +11,6 @@ export interface Rectangle<T> {
   r: number
   top: number | null
   h: number
-  originalHeight: number
   data?: T
 }
 
@@ -25,9 +24,7 @@ export interface BaseLayout<T> {
   ): number | null
   collides(rect: Rectangle<T>, top: number): boolean
   addRectToBitmap(rect: Rectangle<T>, data: unknown): void
-  getRectangles(): Map<string, RectTuple>
   discardRange(left: number, right: number): void
   getTotalHeight(): number
   maxHeightReached: boolean
-  toJSON(): SerializedLayout
 }
