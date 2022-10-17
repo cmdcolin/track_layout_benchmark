@@ -1,5 +1,4 @@
 import { RectTuple, Rectangle, BaseLayout } from './BaseLayout'
-import Bitset from 'bitset'
 
 /**
  * Rectangle-layout manager that lays out rectangles using bitmaps at
@@ -11,11 +10,18 @@ import Bitset from 'bitset'
 // minimum excess size of the array at which we garbage collect
 const maxFeaturePitchWidth = 20000
 
+export function doesIntersect2(
+  left1: number,
+  right1: number,
+  left2: number,
+  right2: number,
+) {
+  return right1 > left2 && left1 < right2
+}
+
+type Interval = [number, number]
 interface RowState {
-  min: number
-  max: number
-  offset: number
-  bits: Bitset
+  bits: Interval[]
 }
 // a single row in the layout
 class LayoutRow<T> {
@@ -32,26 +38,39 @@ class LayoutRow<T> {
   setAllFilled(data?: string) {}
 
   getItemAt(x: number) {
-    return 1
+    if (!this.row) {
+      return undefined
+    }
+    for (let i = 0; i < this.row.bits.length; i++) {
+      const r = this.row.bits[i]
+      if (doesIntersect2(r[0], r[1], x, x)) {
+        return r
+      }
+    }
+    return undefined
   }
 
   isRangeClear(left: number, right: number) {
-    let b = new Bitset()
-    b.setRange(left, right)
-    let r = this.row?.bits.and(b)
-    const k = r?.isEmpty()
-    return k
+    if (!this.row) {
+      return true
+    }
+
+    for (let i = 0; i < this.row.bits.length; i++) {
+      const r = this.row.bits[i]
+      if (doesIntersect2(r[0], r[1], left, right)) {
+        return false
+      }
+    }
+    return true
   }
 
   // NOTE: this.row.min, this.row.max, and this.row.offset are
   // interbase coordinates
-  initialize(left: number, right: number): RowState {
-    const rectWidth = right - left
+  initialize(left: number, right: number) {
     return {
-      offset: left - rectWidth,
       min: left,
       max: right,
-      bits: new Bitset(),
+      bits: [],
     }
   }
 
@@ -61,8 +80,7 @@ class LayoutRow<T> {
     if (!this.row) {
       this.row = this.initialize(left, right)
     }
-
-    this.row.bits.setRange(left, right, 1)
+    this.row.bits.push([rect.l, rect.r])
   }
 }
 

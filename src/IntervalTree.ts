@@ -1,5 +1,5 @@
 import { RectTuple, Rectangle, BaseLayout } from './BaseLayout'
-import Bitset from 'bitset'
+import IntervalTree from '@flatten-js/interval-tree'
 
 /**
  * Rectangle-layout manager that lays out rectangles using bitmaps at
@@ -12,10 +12,7 @@ import Bitset from 'bitset'
 const maxFeaturePitchWidth = 20000
 
 interface RowState {
-  min: number
-  max: number
-  offset: number
-  bits: Bitset
+  bits: IntervalTree
 }
 // a single row in the layout
 class LayoutRow<T> {
@@ -32,26 +29,25 @@ class LayoutRow<T> {
   setAllFilled(data?: string) {}
 
   getItemAt(x: number) {
-    return 1
+    if (!this.row) {
+      return undefined
+    }
+
+    return undefined
   }
 
   isRangeClear(left: number, right: number) {
-    let b = new Bitset()
-    b.setRange(left, right)
-    let r = this.row?.bits.and(b)
-    const k = r?.isEmpty()
-    return k
+    if (!this.row) {
+      return true
+    }
+    return !this.row.bits.intersect_any([left, right])
   }
 
   // NOTE: this.row.min, this.row.max, and this.row.offset are
   // interbase coordinates
-  initialize(left: number, right: number): RowState {
-    const rectWidth = right - left
+  initialize(left: number, right: number) {
     return {
-      offset: left - rectWidth,
-      min: left,
-      max: right,
-      bits: new Bitset(),
+      bits: new IntervalTree(),
     }
   }
 
@@ -61,8 +57,8 @@ class LayoutRow<T> {
     if (!this.row) {
       this.row = this.initialize(left, right)
     }
-
-    this.row.bits.setRange(left, right, 1)
+    console.log([rect.l, rect.r])
+    this.row.bits.insert([rect.l, rect.r])
   }
 }
 

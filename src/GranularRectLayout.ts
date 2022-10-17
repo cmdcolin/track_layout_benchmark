@@ -243,11 +243,6 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
 
   private pTotalHeight: number
 
-  /*
-   *
-   * pitchX - layout grid pitch in the X direction
-   * maxHeight - maximum layout height, default Infinity (no max)
-   */
   constructor({
     pitchX = 1,
     hardRowLimit = 1000,

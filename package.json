@@ -42,6 +42,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@flatten-js/interval-tree": "^1.0.19",
     "bitset": "^5.1.1",
     "canvas": "^2.10.1"
   }

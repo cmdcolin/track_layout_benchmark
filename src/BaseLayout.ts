@@ -24,7 +24,6 @@ export interface BaseLayout<T> {
   ): number | null
   collides(rect: Rectangle<T>, top: number): boolean
   addRectToBitmap(rect: Rectangle<T>, data: unknown): void
-  discardRange(left: number, right: number): void
   getTotalHeight(): number
   maxHeightReached: boolean
 }
