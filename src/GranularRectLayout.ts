@@ -1,11 +1,4 @@
-import { RectTuple, Rectangle, BaseLayout } from './BaseLayout'
-
-/**
- * Rectangle-layout manager that lays out rectangles using bitmaps at
- * resolution that, for efficiency, may be somewhat lower than that of the
- * coordinate system for the rectangles being laid out.  `pitchX` is the ratios
- * of input scale resolution to internal bitmap resolution.
- */
+import type { RectTuple, Rectangle, BaseLayout } from './BaseLayout.ts'
 
 // minimum excess size of the array at which we garbage collect
 const minSizeToBotherWith = 10000
@@ -26,12 +19,6 @@ class LayoutRow<T> {
   private widthLimit = 1_000_000
 
   private row?: RowState
-
-  // this.row.bits is the array of items in the layout row, indexed by (x - this.offset)
-  // this.row.min is the leftmost edge of all the rectangles we have in the layout
-  // this.row.max is the rightmost edge of all the rectangles we have in the layout
-  // this.row.offset is the offset of the bits array relative to the genomic coordinates
-  //      (modified by pitchX, but we don't know that in this class)
 
   setAllFilled(data?: string) {
     this.allFilled = !!data

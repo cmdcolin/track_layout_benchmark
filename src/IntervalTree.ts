@@ -1,4 +1,4 @@
-import { RectTuple, Rectangle, BaseLayout } from './BaseLayout'
+import { RectTuple, Rectangle, BaseLayout } from './BaseLayout.ts'
 import IntervalTree from '@flatten-js/interval-tree'
 
 /**

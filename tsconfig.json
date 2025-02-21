@@ -1,16 +1,19 @@
 {
-  "include": ["src"],
+  "type": "module",
+  "include": [
+    "src"
+  ],
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2015",
-    "types": ["node", "jest"],
-    "lib": ["dom", "esnext"],
+    "target": "esnext",
+    "types": [
+      "node"
+    ],
     "declaration": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true
+    "allowImportingTsExtensions": true
   }
 }
