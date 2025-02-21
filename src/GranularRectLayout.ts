@@ -305,7 +305,7 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
   collides(rect: Rectangle<T>, top: number) {
     const { bitmap } = this
 
-    let y = top
+    const y = top
     const row = bitmap[y]
     if (row !== undefined && !row.isRangeClear(rect.l, rect.r)) {
       return true
@@ -377,7 +377,7 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
   getByID(id: string) {
     const r = this.rectangles.get(id)
     if (r) {
-      const t = r.top as number
+      const t = r.top!
       return [r.l * this.pitchX, t, r.r * this.pitchX, t + r.h] as RectTuple
     }
 

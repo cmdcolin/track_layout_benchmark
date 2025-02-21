@@ -5,20 +5,14 @@
   "description": "granular rect testing",
   "author": "Colin",
   "license": "MIT",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "esm",
-    "src"
-  ],
   "scripts": {
     "test": "vitest",
-    "lint": "eslint --report-unused-disable-directives --max-warnings 0 --ext .js,.ts src",
-    "clean": "rimraf dist esm",
-    "prebuild": "npm run clean && npm run lint",
-    "preversion": "npm run lint && npm test && npm run build",
-    "version": "standard-changelog && git add CHANGELOG.md",
-    "postversion": "git push --follow-tags"
+    "gran": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_gran.ts 1000",
+    "simp": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_arrsimple.ts 1000",
+    "int": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_intervaltree.ts 1000",
+    "bit": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_bitset.ts 1000",
+    "bench": "NODE_OPTIONS=\"--experimental-strip-types\" hyperfine -r 1 'node src/bench_arrsimple.ts 10000' 'node src/bench_gran.ts 10000' 'node src/bench_intervaltree.ts 10000' 'node src/bench_bitset.ts 10000'",
+    "lint": "eslint --report-unused-disable-directives --max-warnings 0"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
@@ -32,6 +26,7 @@
     "rimraf": "^6.0.1",
     "standard-changelog": "^6.0.0",
     "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1",
     "vitest": "^3.0.6"
   },
   "publishConfig": {
