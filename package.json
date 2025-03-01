@@ -7,12 +7,12 @@
   "license": "MIT",
   "scripts": {
     "test": "vitest",
-    "gran": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_gran.ts 1000",
-    "simp": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_arrsimple.ts 1000",
-    "int": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_intervaltree.ts 1000",
-    "bit": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_bitset.ts 1000",
-    "brick": "NODE_OPTIONS=\"--experimental-strip-types\" node src/bench_brick.ts 1000",
-    "bench": "NODE_OPTIONS=\"--experimental-strip-types\" hyperfine -r 1 'node src/bench_arrsimple.ts 10000' 'node src/bench_gran.ts 10000' 'node src/bench_intervaltree.ts 10000' 'node src/bench_bitset.ts 10000'  'node src/bench_brick.ts 10000'",
+    "gran": "node src/bench/gran.ts 1000",
+    "simp": "node src/bench/arrsimple.ts 1000",
+    "int": "node src/bench/intervaltree.ts 1000",
+    "bit": "node src/bench/bitset.ts 1000",
+    "brick": "node src/bench/brick.ts 1000",
+    "bench": "./bench.ts 1000",
     "lint": "eslint --report-unused-disable-directives --max-warnings 0"
   },
   "devDependencies": {

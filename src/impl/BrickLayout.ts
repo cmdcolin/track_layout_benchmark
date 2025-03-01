@@ -1,3 +1,5 @@
+import { RectTuple } from './BaseLayout.ts'
+
 export default class BrickLayout {
   private readonly maxHeight: number
   private readonly heights: Map<number, number>
