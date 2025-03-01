@@ -1,4 +1,4 @@
-import IntervalTree from 'node-interval-tree'
+import IntervalTree from '../nodeIntervalTree.ts'
 
 import type { RectTuple, Rectangle, BaseLayout } from './BaseLayout.ts'
 
@@ -33,7 +33,7 @@ class LayoutRow<T> {
     if (!this.row) {
       return true
     }
-    return !this.row.bits.search(left, right)
+    return !this.row.bits.search(left, right).length
   }
 
   // NOTE: this.row.min, this.row.max, and this.row.offset are
@@ -50,7 +50,6 @@ class LayoutRow<T> {
     if (!this.row) {
       this.row = this.initialize(left, right)
     }
-    console.log([rect.l, rect.r])
     this.row.bits.insert(rect.l, rect.r, 'foo')
   }
 }

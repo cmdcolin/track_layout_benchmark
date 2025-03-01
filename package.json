@@ -7,12 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "vitest",
-    "gran": "node src/bench/gran.ts 1000",
-    "simp": "node src/bench/arrsimple.ts 1000",
-    "int": "node src/bench/intervaltree.ts 1000",
-    "bit": "node src/bench/bitset.ts 1000",
-    "brick": "node src/bench/brick.ts 1000",
-    "bench": "./bench.ts 1000",
+    "bench": "./bench.sh 1000",
     "lint": "eslint --report-unused-disable-directives --max-warnings 0"
   },
   "devDependencies": {
@@ -35,8 +30,10 @@
   },
   "dependencies": {
     "@flatten-js/interval-tree": "^1.0.19",
+    "@types/shallowequal": "^1.1.5",
     "bitset": "^5.1.1",
     "canvas": "^3.1.0",
-    "node-interval-tree": "^2.1.2"
+    "node-interval-tree": "^2.1.2",
+    "shallowequal": "^1.1.0"
   }
 }
