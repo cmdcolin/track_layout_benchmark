@@ -1,33 +1,23 @@
+import IntervalTree from 'node-interval-tree'
+
 import type { RectTuple, Rectangle, BaseLayout } from './BaseLayout.ts'
 
-/**
- * Rectangle-layout manager that lays out rectangles using bitmaps at
- * resolution that, for efficiency, may be somewhat lower than that of the
- * coordinate system for the rectangles being laid out.  `pitchX` is the ratios
- * of input scale resolution to internal bitmap resolution.
- */
-
-// minimum excess size of the array at which we garbage collect
 const maxFeaturePitchWidth = 20000
 
-export function doesIntersect2(
-  left1: number,
-  right1: number,
-  left2: number,
-  right2: number,
-) {
-  return right1 > left2 && left1 < right2
+interface RowState {
+  bits: IntervalTree<string>
 }
 
-type Interval = [number, number]
-interface RowState {
-  bits: Interval[]
-}
-// a single row in the layout
 class LayoutRow<T> {
   private padding = 1
 
   private row?: RowState
+
+  // this.row.bits is the array of items in the layout row, indexed by (x - this.offset)
+  // this.row.min is the leftmost edge of all the rectangles we have in the layout
+  // this.row.max is the rightmost edge of all the rectangles we have in the layout
+  // this.row.offset is the offset of the bits array relative to the genomic coordinates
+  //      (modified by pitchX, but we don't know that in this class)
 
   setAllFilled(data?: string) {}
 
@@ -35,12 +25,7 @@ class LayoutRow<T> {
     if (!this.row) {
       return undefined
     }
-    for (let i = 0; i < this.row.bits.length; i++) {
-      const r = this.row.bits[i]
-      if (doesIntersect2(r[0], r[1], x, x)) {
-        return r
-      }
-    }
+
     return undefined
   }
 
@@ -48,21 +33,14 @@ class LayoutRow<T> {
     if (!this.row) {
       return true
     }
-
-    for (let i = 0; i < this.row.bits.length; i++) {
-      const r = this.row.bits[i]
-      if (doesIntersect2(r[0], r[1], left, right)) {
-        return false
-      }
-    }
-    return true
+    return !this.row.bits.search(left, right)
   }
 
+  // NOTE: this.row.min, this.row.max, and this.row.offset are
+  // interbase coordinates
   initialize(left: number, right: number) {
     return {
-      min: left,
-      max: right,
-      bits: [],
+      bits: new IntervalTree<string>(),
     }
   }
 
@@ -72,7 +50,8 @@ class LayoutRow<T> {
     if (!this.row) {
       this.row = this.initialize(left, right)
     }
-    this.row.bits.push([rect.l, rect.r])
+    console.log([rect.l, rect.r])
+    this.row.bits.insert(rect.l, rect.r, 'foo')
   }
 }
 
@@ -91,6 +70,11 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
 
   private pTotalHeight: number
 
+  /*
+   *
+   * pitchX - layout grid pitch in the X direction
+   * maxHeight - maximum layout height, default Infinity (no max)
+   */
   constructor({
     pitchX = 1,
     hardRowLimit = 1000,
@@ -106,7 +90,7 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
     this.displayMode = displayMode
     this.bitmap = []
     this.rectangles = new Map()
-    this.pTotalHeight = 0
+    this.pTotalHeight = 0 // total height, in units of bitmap squares (px)
   }
 
   /**
@@ -175,6 +159,9 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
     return false
   }
 
+  /**
+   * make a subarray if it does not exist
+   */
   private autovivifyRow(bitmap: LayoutRow<T>[], y: number) {
     let row = bitmap[y]
     if (!row) {
@@ -217,7 +204,7 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
   }
 
   getByCoord(x: number, y: number) {
-    return this.bitmap[Math.floor(y)]?.getItemAt(Math.floor(x / this.pitchX))
+    this.bitmap[Math.floor(y)]?.getItemAt(Math.floor(x / this.pitchX))
   }
 
   getByID(id: string) {

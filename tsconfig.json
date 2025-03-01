@@ -6,12 +6,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "esnext",
-    "module": "nodenext",
     "types": [
       "node"
     ],
     "declaration": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
