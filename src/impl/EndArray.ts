@@ -1,6 +1,6 @@
 import type { RectTuple, Rectangle, BaseLayout } from './BaseLayout.ts'
 
-export default class LeftArrayLayout<T> {
+export default class EndArrayLayout<T> {
   ylim: number
   endArray: number[]
   rectangles = new Map<string, Rectangle<T>>()

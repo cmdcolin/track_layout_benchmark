@@ -30,10 +30,12 @@
   },
   "dependencies": {
     "@flatten-js/interval-tree": "^1.0.19",
+    "@types/seed-random": "^2.2.4",
     "@types/shallowequal": "^1.1.5",
     "bitset": "^5.1.1",
     "canvas": "^3.1.0",
     "node-interval-tree": "^2.1.2",
+    "seed-random": "^2.2.0",
     "shallowequal": "^1.1.0"
   }
 }
