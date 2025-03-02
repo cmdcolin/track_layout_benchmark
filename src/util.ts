@@ -22,7 +22,9 @@ export function draw(layout: any, filename: string) {
   for (const val of layout.getRectangles().values()) {
     const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
     ctx.fillStyle = randomColor
-    ctx.fillRect(val[0], val[1], val[2] - val[0], val[3] - val[1])
+    if (val[1]) {
+      ctx.fillRect(val[0], val[1], val[2] - val[0], val[3] - val[1])
+    }
   }
   const out = createWriteStream(filename)
   const stream = canvas.createPNGStream()

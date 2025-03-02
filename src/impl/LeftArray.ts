@@ -7,7 +7,7 @@ export default class LeftArrayLayout<T> {
   padding: number
 
   constructor(arg?: { padding?: number; ylim?: number }) {
-    const { ylim = 40, padding = 3 } = arg || {}
+    const { ylim = 1000, padding = 3 } = arg || {}
     this.ylim = ylim
     this.padding = padding
     this.endArray = new Array(ylim).fill(-Infinity)

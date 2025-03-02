@@ -3,4 +3,4 @@ import { addRects, draw } from '../util.ts'
 
 const l = new SimpleArrLayout()
 addRects(l, +process.argv[2])
-draw(l, 'simple_arr.png')
+draw(l, 'img/simple_arr.png')

@@ -3,4 +3,4 @@ import { addRects, draw } from '../util.ts'
 
 const l = new LeftArrayLayout()
 addRects(l, +process.argv[2])
-draw(l, 'leftarray.png')
+draw(l, 'img/leftarray.png')
