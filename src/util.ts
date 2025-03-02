@@ -8,7 +8,7 @@ const w2 = width - fw
 
 export function addRects(layout: any, n: number) {
   for (let i = 0; i < n; i++) {
-    const x1 = Math.random() * w2
+    const x1 = (i / n) * w2
     const x2 = x1 + fw
     layout.addRect(`${i}`, x1, x2, 10)
   }
