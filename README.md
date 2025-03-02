@@ -37,7 +37,9 @@ Genome browsers commonly stack features that occupy genomic ranges on top of
 each other sort of like bricks. There are likely other possible applications.
 These stackings don't need to be the NP-hard bin-packed optimal layout, just
 good enough. It is a little tricky to get the right algorithm to do this
-however. Here, I have surveyed a couple techniques, and put them in a little
+however. 
+
+In this repo, I have surveyed a couple of techniques, and put them in a little
 benchmark
 
 ## Techniques
@@ -56,9 +58,9 @@ coordinate' of a feature on that row.
 To add a new rectangle to the end-array layout, it iterates over the end-array
 array for the first place where the START position of a genomic feature is
 greater than a position in the end-array. The first place where the start
-position is greater than a element of the end-array means the feature can be
-safely 'laid out' there, and the value of of that element of the end-array is
-updated the the END position of that genomic feature
+position is greater than an element of the end-array means the feature can be
+safely 'laid out' there, and the value of that element of the end-array is
+updated the END position of that genomic feature
 
 This layout method works best when in-coming features are sorted by their start
 position, otherwise the layout will not have good density
@@ -83,8 +85,8 @@ increase the density of the resulting layout
 
 ### Interval tree
 
-Interval tree is a interesting data structure that let's you query intervals,
-and we can imagine each row with it's own interval tree to query occupancy of a
+Interval tree is an interesting data structure that lets you query intervals,
+and we can imagine each row with its own interval tree to query the occupancy of a
 given genomic range. It is O(log(n)) for "queries".
 
 This implementation I used is similar to the granular rect layout but instead of
@@ -106,4 +108,4 @@ increase the density of the resulting layout
 ## Next steps
 
 Experiment with freeing layout memory when no longer used. How this is done may
-vary based on approach
+vary based on the approach
