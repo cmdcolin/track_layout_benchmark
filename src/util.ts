@@ -20,8 +20,7 @@ export function draw(layout: any, filename: string) {
   ctx.fillStyle = 'black'
   ctx.fillRect(0, 0, width, height)
   for (const val of layout.getRectangles().values()) {
-    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
-    ctx.fillStyle = randomColor
+    ctx.fillStyle = `hsl(${Math.random() * 300},80%,50%)`
     if (val[1]) {
       ctx.fillRect(val[0], val[1], val[2] - val[0], val[3] - val[1])
     }
