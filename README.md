@@ -27,7 +27,7 @@ array for the first place where the START position of a genomic feature is
 greater than a position in the end-array. The first place where the start
 position is greater than an element of the end-array means the feature can be
 safely 'laid out' there, and the value of that element of the end-array is
-updated the END position of that genomic feature
+updated to the END position of that genomic feature
 
 This layout method works best when in-coming features are sorted by their start
 position, otherwise the layout will not have good density
