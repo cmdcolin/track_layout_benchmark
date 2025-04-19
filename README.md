@@ -105,13 +105,16 @@ Summary
 Done in 12.10s.
 ```
 
-## Next steps
-
-Experiment with freeing layout memory when no longer used. How this is done may
-vary based on the approach
 
 ## Rendered images
 
 I created rendered images of the resulting layouts in img folder, example
 
 ![](img/endarr.png)
+
+
+
+## Next steps
+
+- Experiment with freeing layout memory when no longer used. How this is done may vary based on the approach
+- See if there are other references to algorithms like this from outside the bioinformatics-sphere (masonry layout in CSS?)
