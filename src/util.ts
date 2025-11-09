@@ -1,7 +1,7 @@
 import { createCanvas } from 'canvas'
 import { createWriteStream } from 'fs'
 
-const width = 2000
+const width = 20000
 const height = 1000
 const fw = 100
 const w2 = width - fw

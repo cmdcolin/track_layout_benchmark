@@ -21,15 +21,15 @@
     "prettier": "^3.5.1",
     "rimraf": "^6.0.1",
     "standard-changelog": "^6.0.0",
-    "typescript": "next",
+    "typescript": "^5.9.0",
     "typescript-eslint": "^8.24.1",
-    "vitest": "^3.0.6"
+    "vitest": "^4.0.8"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@flatten-js/interval-tree": "^1.0.19",
+    "@flatten-js/interval-tree": "^2.0.3",
     "@types/seed-random": "^2.2.4",
     "@types/shallowequal": "^1.1.5",
     "bitset": "^5.1.1",

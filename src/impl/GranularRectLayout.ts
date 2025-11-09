@@ -232,7 +232,7 @@ export default class GranularRectLayout<T> implements BaseLayout<T> {
 
   constructor({
     pitchX = 1,
-    hardRowLimit = 1000,
+    hardRowLimit = 10000,
     displayMode = 'normal',
   }: {
     pitchX?: number
