@@ -1,0 +1,72 @@
+yarn run v1.22.22
+$ ./bench.sh 10000
+==========================================
+Benchmarking with 10,000 rectangles
+==========================================
+Benchmark 1: node src/bench/gran.ts 10000
+  Time (mean ± σ):      4.826 s ±  0.299 s    [User: 4.959 s, System: 0.518 s]
+  Range (min … max):    4.426 s …  5.129 s    4 runs
+ 
+Benchmark 2: node src/bench/gran_intervals.ts 10000
+  Time (mean ± σ):      4.497 s ±  0.349 s    [User: 4.456 s, System: 0.193 s]
+  Range (min … max):    4.211 s …  4.967 s    4 runs
+ 
+Benchmark 3: node src/bench/gran_ultra.ts 10000
+  Time (mean ± σ):      4.152 s ±  0.429 s    [User: 4.089 s, System: 0.168 s]
+  Range (min … max):    3.698 s …  4.718 s    4 runs
+ 
+Benchmark 4: node src/bench/gran_v3.ts 10000
+  Time (mean ± σ):      4.006 s ±  0.050 s    [User: 4.019 s, System: 0.155 s]
+  Range (min … max):    3.959 s …  4.055 s    4 runs
+ 
+Benchmark 5: node src/bench/gran_v4.ts 10000
+  Time (mean ± σ):      4.005 s ±  0.034 s    [User: 3.992 s, System: 0.149 s]
+  Range (min … max):    3.963 s …  4.045 s    4 runs
+ 
+Benchmark 6: node src/bench/endarr.ts 10000
+  Time (mean ± σ):      3.963 s ±  0.394 s    [User: 3.832 s, System: 0.189 s]
+  Range (min … max):    3.703 s …  4.550 s    4 runs
+ 
+Summary
+  node src/bench/endarr.ts 10000 ran
+    1.01 ± 0.10 times faster than node src/bench/gran_v4.ts 10000
+    1.01 ± 0.10 times faster than node src/bench/gran_v3.ts 10000
+    1.05 ± 0.15 times faster than node src/bench/gran_ultra.ts 10000
+    1.13 ± 0.14 times faster than node src/bench/gran_intervals.ts 10000
+    1.22 ± 0.14 times faster than node src/bench/gran.ts 10000
+
+==========================================
+Benchmarking with 100,000 rectangles
+==========================================
+Benchmark 1: node src/bench/gran.ts 100000
+  Time (mean ± σ):     13.280 s ±  0.567 s    [User: 14.482 s, System: 1.083 s]
+  Range (min … max):   12.623 s … 13.818 s    4 runs
+ 
+Benchmark 2: node src/bench/gran_intervals.ts 100000
+  Time (mean ± σ):     11.837 s ±  0.656 s    [User: 12.005 s, System: 0.224 s]
+  Range (min … max):   11.359 s … 12.775 s    4 runs
+ 
+Benchmark 3: node src/bench/gran_ultra.ts 100000
+  Time (mean ± σ):      8.586 s ±  0.358 s    [User: 8.617 s, System: 0.180 s]
+  Range (min … max):    8.112 s …  8.905 s    4 runs
+ 
+Benchmark 4: node src/bench/gran_v3.ts 100000
+  Time (mean ± σ):      9.472 s ±  0.881 s    [User: 9.488 s, System: 0.174 s]
+  Range (min … max):    8.853 s … 10.731 s    4 runs
+ 
+Benchmark 5: node src/bench/gran_v4.ts 100000
+  Time (mean ± σ):     10.547 s ±  1.904 s    [User: 10.558 s, System: 0.201 s]
+  Range (min … max):    9.130 s … 13.349 s    4 runs
+ 
+Benchmark 6: node src/bench/endarr.ts 100000
+  Time (mean ± σ):      4.933 s ±  0.441 s    [User: 4.856 s, System: 0.185 s]
+  Range (min … max):    4.528 s …  5.415 s    4 runs
+ 
+Summary
+  node src/bench/endarr.ts 100000 ran
+    1.74 ± 0.17 times faster than node src/bench/gran_ultra.ts 100000
+    1.92 ± 0.25 times faster than node src/bench/gran_v3.ts 100000
+    2.14 ± 0.43 times faster than node src/bench/gran_v4.ts 100000
+    2.40 ± 0.25 times faster than node src/bench/gran_intervals.ts 100000
+    2.69 ± 0.27 times faster than node src/bench/gran.ts 100000
+Done in 420.32s.

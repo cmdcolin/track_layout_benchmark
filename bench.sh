@@ -1,10 +1,19 @@
+#!/bin/bash
 export NODE_OPTIONS="--experimental-strip-types"
-hyperfine -r 1 \
-  "node src/bench/arrsimple.ts $1" \
-  "node src/bench/gran.ts $1" \
-  "node src/bench/gran_rowhints.ts $1" \
-  "node src/bench/gran_intervals.ts $1" \
-  "node src/bench/bitset.ts $1" \
-  "node src/bench/iv1.ts $1" \
-  "node src/bench/iv2.ts $1" \
-  "node src/bench/endarr.ts $1"
+
+echo "=========================================="
+echo "Benchmarking with 10,000 rectangles"
+echo "=========================================="
+hyperfine -r 1 --warmup 1 \
+  "node src/bench/gran.ts 10000" \
+  "node src/bench/gran_ultra.ts 10000" \
+  "node src/bench/gran_v5.ts 10000"
+
+echo ""
+echo "=========================================="
+echo "Benchmarking with 100,000 rectangles"
+echo "=========================================="
+hyperfine -r 1 --warmup 1 \
+  "node src/bench/gran.ts 100000" \
+  "node src/bench/gran_ultra.ts 100000" \
+  "node src/bench/gran_v5.ts 100000"

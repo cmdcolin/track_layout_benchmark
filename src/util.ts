@@ -2,13 +2,13 @@ import { createCanvas } from 'canvas'
 import { createWriteStream } from 'fs'
 
 const width = 20000
-const height = 1000
+const height = 5000
 const fw = 100
 const w2 = width - fw
 
 export function addRects(layout: any, n: number) {
   for (let i = 0; i < n; i++) {
-    const x1 = (i / n) * w2
+    const x1 = Math.max(0, (i / n) * w2 + Math.floor(Math.random() * 500 - 250))
     const x2 = x1 + fw
     layout.addRect(`${i}`, x1, x2, 10)
   }
