@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "vitest",
-    "bench": "./bench.sh 10000",
-    "lint": "eslint --report-unused-disable-directives --max-warnings 0"
+    "bench": "./bench_all.sh",
+    "lint": "eslint --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
@@ -18,9 +19,8 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.1",
+    "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "standard-changelog": "^6.0.0",
     "typescript": "^5.9.0",
     "typescript-eslint": "^8.24.1",
     "vitest": "^4.0.8"
@@ -34,6 +34,7 @@
     "@types/shallowequal": "^1.1.5",
     "bitset": "^5.1.1",
     "canvas": "^3.1.0",
+    "flatqueue": "^3.0.0",
     "node-interval-tree": "^2.1.2",
     "seed-random": "^2.2.0",
     "shallowequal": "^1.1.0"

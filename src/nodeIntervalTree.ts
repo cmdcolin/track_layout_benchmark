@@ -668,7 +668,7 @@ export class InOrder<T extends Interval<N>, N extends number | bigint = number>
   private stack: Node<T, N>[] = []
 
   private currentNode?: Node<T, N>
-  private i: number = 0
+  private i = 0
 
   constructor(startNode?: Node<T, N>) {
     if (startNode !== undefined) {
@@ -732,7 +732,7 @@ export class ReverseInOrder<
   private stack: Node<T, N>[] = []
 
   private currentNode?: Node<T, N>
-  private i: number = 0
+  private i = 0
 
   constructor(startNode?: Node<T, N>) {
     if (startNode !== undefined) {

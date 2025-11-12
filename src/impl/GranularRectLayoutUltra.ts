@@ -54,8 +54,8 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
     }
 
     // Use bitwise OR for fast floor
-    const pLeft = left / this.pitchX | 0
-    const pRight = right / this.pitchX | 0
+    const pLeft = (left / this.pitchX) | 0
+    const pRight = (right / this.pitchX) | 0
 
     const rectangle: Rectangle<T> = {
       id,
@@ -104,11 +104,11 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
 
         // Binary search for larger arrays
         let low = 0
-        let high = len >> 1  // Divide by 2 using bit shift
+        let high = len >> 1 // Divide by 2 using bit shift
 
         while (low < high) {
           const mid = (low + high) >>> 1
-          const midIdx = mid << 1  // Multiply by 2
+          const midIdx = mid << 1 // Multiply by 2
           if (intervals[midIdx + 1] <= pL) {
             low = mid + 1
           } else {
@@ -119,10 +119,10 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
         // Check from binary search point
         for (let i = low << 1; i < len; i += 2) {
           if (intervals[i] >= pR) {
-            break outer  // No more possible overlaps
+            break outer // No more possible overlaps
           }
           if (intervals[i + 1] > pL) {
-            continue outer  // Collision found
+            continue outer // Collision found
           }
         }
 
@@ -231,8 +231,8 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
   }
 
   discardRange(left: number, right: number) {
-    const pLeft = left / this.pitchX | 0
-    const pRight = right / this.pitchX | 0
+    const pLeft = (left / this.pitchX) | 0
+    const pRight = (right / this.pitchX) | 0
     const len = this.bitmap.length
 
     for (let y = 0; y < len; y += 1) {
@@ -281,7 +281,7 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
       return true
     }
 
-    const pX = x / this.pitchX | 0
+    const pX = (x / this.pitchX) | 0
     const intervals = row.i
     const len = intervals.length
     for (let i = 0; i < len; i += 2) {

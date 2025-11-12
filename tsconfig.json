@@ -1,14 +1,10 @@
 {
   "type": "module",
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "compilerOptions": {
     "outDir": "dist",
     "target": "esnext",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "declaration": true,
     "moduleResolution": "node",
     "sourceMap": true,

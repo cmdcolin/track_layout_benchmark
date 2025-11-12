@@ -14,8 +14,8 @@ export function addRectsUnsorted(layout: any, n: number) {
 
   // Shuffle the indices
   for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [indices[i], indices[j]] = [indices[j], indices[i]]
+    const j = Math.floor(rng() * (i + 1))
+    ;[indices[i], indices[j]] = [indices[j], indices[i]]
   }
 
   for (const i of indices) {

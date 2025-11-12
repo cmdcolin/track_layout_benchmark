@@ -6,9 +6,12 @@ const height = 5000
 const fw = 100
 const w2 = width - fw
 
-export function addRects(layout: any, n: number) {
+export function addRects(layout: any, n: number, random = false) {
   for (let i = 0; i < n; i++) {
-    const x1 = Math.max(0, (i / n) * w2 + Math.floor(Math.random() * 500 - 250))
+    const baseX = (i / n) * w2
+    const x1 = random
+      ? Math.max(0, baseX + Math.floor(Math.random() * 500 - 250))
+      : baseX
     const x2 = x1 + fw
     layout.addRect(`${i}`, x1, x2, 10)
   }
