@@ -180,6 +180,38 @@ Summary
    25.60 ± 1.59 times faster than node src/bench/iv2.ts 100000
 ```
 
+========================================== Benchmarking TALL screen (5000x20000)
+with 50,000 rectangles Testing: arrsimple_tall endarr_tall flatqueue_tall
+gran_tall gran_ultra_tall iv1_tall iv2_tall
+========================================== Benchmark 1: node
+src/bench/arrsimple_tall.ts Time (mean ± σ): 7.475 s ± 0.868 s [User: 7.440 s,
+System: 0.180 s] Range (min … max): 6.454 s … 8.563 s 4 runs
+
+Benchmark 2: node src/bench/endarr_tall.ts Time (mean ± σ): 4.028 s ± 0.226 s
+[User: 3.907 s, System: 0.217 s] Range (min … max): 3.843 s … 4.319 s 4 runs
+
+Benchmark 3: node src/bench/flatqueue_tall.ts Time (mean ± σ): 3.786 s ± 0.200 s
+[User: 3.677 s, System: 0.229 s] Range (min … max): 3.559 s … 4.039 s 4 runs
+
+Benchmark 4: node src/bench/gran_tall.ts Time (mean ± σ): 9.291 s ± 0.308 s
+[User: 10.579 s, System: 0.535 s] Range (min … max): 9.014 s … 9.677 s 4 runs
+
+Benchmark 5: node src/bench/gran_ultra_tall.ts Time (mean ± σ): 6.766 s ± 0.202
+s [User: 6.750 s, System: 0.156 s] Range (min … max): 6.519 s … 6.937 s 4 runs
+
+Benchmark 6: node src/bench/iv1_tall.ts Time (mean ± σ): 14.761 s ± 0.326 s
+[User: 14.949 s, System: 0.222 s] Range (min … max): 14.379 s … 15.094 s 4 runs
+
+Benchmark 7: node src/bench/iv2_tall.ts Time (mean ± σ): 38.261 s ± 1.360 s
+[User: 38.382 s, System: 0.193 s] Range (min … max): 37.285 s … 40.231 s 4 runs
+
+Summary node src/bench/flatqueue_tall.ts ran 1.06 ± 0.08 times faster than node
+src/bench/endarr_tall.ts 1.79 ± 0.11 times faster than node
+src/bench/gran_ultra_tall.ts 1.97 ± 0.25 times faster than node
+src/bench/arrsimple_tall.ts 2.45 ± 0.15 times faster than node
+src/bench/gran_tall.ts 3.90 ± 0.22 times faster than node src/bench/iv1_tall.ts
+10.11 ± 0.64 times faster than node src/bench/iv2_tall.ts
+
 ## Next steps
 
 - Experiment with freeing layout memory when no longer used. How this is done
