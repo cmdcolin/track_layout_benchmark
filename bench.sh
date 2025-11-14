@@ -21,7 +21,7 @@ SIZE2=100000
 # Build hyperfine commands
 CMDS2=()
 for impl in "$@"; do
-  CMDS2+=("node src/bench/${impl}.ts ${SIZE2}")
+  CMDS2+=("node dist/bench/${impl}.js ${SIZE2}")
 done
 echo ""
 echo "=========================================="

@@ -95,42 +95,41 @@ I created rendered images of the resulting layouts in img folder, example
 
 ```
 
-
 ==========================================
 Benchmarking with 100,000 rectangles
 ==========================================
-Benchmark 1: node src/bench/arrsimple.ts 100000
-  Time (mean ± σ):     35.540 s ±  2.547 s    [User: 35.569 s, System: 0.179 s]
-  Range (min … max):   32.841 s … 38.471 s    4 runs
+Benchmark 1: node dist/bench/arrsimple.js 100000
+  Time (mean ± σ):     33.752 s ±  3.884 s    [User: 33.727 s, System: 0.190 s]
+  Range (min … max):   30.083 s … 38.990 s    4 runs
 
-Benchmark 2: node src/bench/endarr.ts 100000
-  Time (mean ± σ):      4.025 s ±  0.040 s    [User: 3.893 s, System: 0.302 s]
-  Range (min … max):    3.984 s …  4.074 s    4 runs
+Benchmark 2: node dist/bench/endarr.js 100000
+  Time (mean ± σ):      4.379 s ±  0.284 s    [User: 4.230 s, System: 0.249 s]
+  Range (min … max):    4.149 s …  4.767 s    4 runs
 
-Benchmark 3: node src/bench/flatqueue.ts 100000
-  Time (mean ± σ):      4.090 s ±  0.140 s    [User: 4.002 s, System: 0.251 s]
-  Range (min … max):    3.912 s …  4.255 s    4 runs
+Benchmark 3: node dist/bench/flatqueue.js 100000
+  Time (mean ± σ):      3.820 s ±  0.187 s    [User: 3.700 s, System: 0.226 s]
+  Range (min … max):    3.692 s …  4.098 s    4 runs
 
-Benchmark 4: node src/bench/gran.ts 100000
-  Time (mean ± σ):     13.479 s ±  0.597 s    [User: 14.670 s, System: 1.190 s]
-  Range (min … max):   12.661 s … 14.018 s    4 runs
+Benchmark 4: node dist/bench/gran.js 100000
+  Time (mean ± σ):     12.990 s ±  0.833 s    [User: 14.691 s, System: 1.026 s]
+  Range (min … max):   11.894 s … 13.849 s    4 runs
 
-Benchmark 5: node src/bench/gran_ultra.ts 100000
-  Time (mean ± σ):      9.275 s ±  0.711 s    [User: 9.292 s, System: 0.190 s]
-  Range (min … max):    8.514 s …  9.886 s    4 runs
+Benchmark 5: node dist/bench/gran_ultra.js 100000
+  Time (mean ± σ):      8.856 s ±  0.835 s    [User: 8.829 s, System: 0.186 s]
+  Range (min … max):    7.954 s …  9.975 s    4 runs
 
-Benchmark 6: node src/bench/iv1.ts 100000
-  Time (mean ± σ):     43.322 s ±  2.552 s    [User: 43.991 s, System: 0.313 s]
-  Range (min … max):   40.038 s … 45.642 s    4 runs
+Benchmark 6: node dist/bench/iv1.js 100000
+  Time (mean ± σ):     49.071 s ±  2.475 s    [User: 49.697 s, System: 0.317 s]
+  Range (min … max):   46.568 s … 51.414 s    4 runs
 
 Summary
-  node src/bench/endarr.ts 100000 ran
-    1.02 ± 0.04 times faster than node src/bench/flatqueue.ts 100000
-    2.30 ± 0.18 times faster than node src/bench/gran_ultra.ts 100000
-    3.35 ± 0.15 times faster than node src/bench/gran.ts 100000
-    8.83 ± 0.64 times faster than node src/bench/arrsimple.ts 100000
-   10.76 ± 0.64 times faster than node src/bench/iv1.ts 100000
-
+  node dist/bench/flatqueue.js 100000 ran
+    1.15 ± 0.09 times faster than node dist/bench/endarr.js 100000
+    2.32 ± 0.25 times faster than node dist/bench/gran_ultra.js 100000
+    3.40 ± 0.27 times faster than node dist/bench/gran.js 100000
+    8.83 ± 1.10 times faster than node dist/bench/arrsimple.js 100000
+   12.84 ± 0.90 times faster than node dist/bench/iv1.js 100000
+Done in 454.34s.
 ```
 
 #### Tall layout
@@ -183,3 +182,7 @@ Summary
   may vary based on the approach
 - See if there are other references to algorithms like this from outside the
   bioinformatics-sphere (masonry layout in CSS?)
+
+## Note
+
+Feel free to provide any optimizations or PRs to this benchmark!

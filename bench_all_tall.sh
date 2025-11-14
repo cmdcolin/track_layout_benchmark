@@ -15,7 +15,7 @@ export NODE_OPTIONS="--experimental-strip-types"
 # Build hyperfine commands
 CMDS=()
 for impl in "${ALL_IMPLS_TALL[@]}"; do
-  CMDS+=("node src/bench/${impl}.ts")
+  CMDS+=("node dist/bench/${impl}.js")
 done
 
 echo "=========================================="

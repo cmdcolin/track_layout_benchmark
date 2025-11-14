@@ -1,15 +1,20 @@
 {
   "type": "module",
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "compilerOptions": {
     "outDir": "dist",
     "target": "esnext",
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "declaration": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
   }
 }

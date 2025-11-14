@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "vitest",
+    "prebench": "yarn build",
     "bench": "./bench_all.sh",
+    "build": "yarn tsc",
     "lint": "eslint --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write ."
   },

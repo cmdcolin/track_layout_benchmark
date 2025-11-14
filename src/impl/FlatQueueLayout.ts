@@ -46,10 +46,10 @@ export default class FlatQueueLayout<T> {
 
     while (
       this.ends.length &&
-      (this.ends.peekValue() < start || isNewChromosome)
+      (this.ends.peekValue()! < start || isNewChromosome)
     ) {
       const freeLane = this.ends.pop()
-      this.freeLanes.push(freeLane, freeLane)
+      this.freeLanes.push(freeLane!, freeLane!)
     }
     this.lastStart = start
 
