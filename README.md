@@ -39,7 +39,7 @@ end-array linearly, it has a priority queue that keeps track of the first
 available position
 
 This is flatqueue in benchmark and is used by
-[GenomeSpy](https://genomespy.app/) and was proposed by Kari Lavikka
+[GenomeSpy](https://genomespy.app/), developed by Kari Lavikka
 
 ### Granular rect layout (w/ "bitmap" layout)
 
