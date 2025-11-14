@@ -8,7 +8,6 @@ ALL_IMPLS_TALL=(
   "gran_tall"
   "gran_ultra_tall"
   "iv1_tall"
-  "iv2_tall"
 )
 
 export NODE_OPTIONS="--experimental-strip-types"

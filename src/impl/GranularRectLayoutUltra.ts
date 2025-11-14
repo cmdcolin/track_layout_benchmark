@@ -53,9 +53,9 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
       return storedRec.top
     }
 
-    // Use bitwise OR for fast floor
-    const pLeft = (left / this.pitchX) | 0
-    const pRight = (right / this.pitchX) | 0
+    // Use Math.trunc to avoid 32-bit overflow
+    const pLeft = Math.trunc(left / this.pitchX)
+    const pRight = Math.trunc(right / this.pitchX)
 
     const rectangle: Rectangle<T> = {
       id,
@@ -231,8 +231,8 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
   }
 
   discardRange(left: number, right: number) {
-    const pLeft = (left / this.pitchX) | 0
-    const pRight = (right / this.pitchX) | 0
+    const pLeft = Math.trunc(left / this.pitchX)
+    const pRight = Math.trunc(right / this.pitchX)
     const len = this.bitmap.length
 
     for (let y = 0; y < len; y += 1) {
@@ -281,7 +281,7 @@ export default class GranularRectLayoutUltra<T> implements BaseLayout<T> {
       return true
     }
 
-    const pX = (x / this.pitchX) | 0
+    const pX = Math.trunc(x / this.pitchX)
     const intervals = row.i
     const len = intervals.length
     for (let i = 0; i < len; i += 2) {

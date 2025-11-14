@@ -38,7 +38,8 @@ This is very similar to the end-array layout, but instead of scanning the
 end-array linearly, it has a priority queue that keeps track of the first
 available position
 
-This is flatqueue in benchmark
+This is flatqueue in benchmark and is used by
+[GenomeSpy](https://genomespy.app/) and was proposed by Kari Lavikka
 
 ### Granular rect layout (w/ "bitmap" layout)
 
@@ -90,141 +91,91 @@ I created rendered images of the resulting layouts in img folder, example
 
 ## Benchmark output
 
+#### Wide layout
+
 ```
-==========================================
-Benchmarking with 1,000 rectangles
-Testing: arrsimple endarr flatqueue gran gran_intervals gran_ultra gran_unsorted iv1 iv2
-==========================================
-Benchmark 1: node src/bench/arrsimple.ts 1000
-  Time (mean ± σ):      3.516 s ±  0.228 s    [User: 3.402 s, System: 0.170 s]
-  Range (min … max):    3.269 s …  3.718 s    4 runs
 
-Benchmark 2: node src/bench/endarr.ts 1000
-  Time (mean ± σ):      3.639 s ±  0.223 s    [User: 3.473 s, System: 0.210 s]
-  Range (min … max):    3.442 s …  3.881 s    4 runs
-
-Benchmark 3: node src/bench/flatqueue.ts 1000
-  Time (mean ± σ):      3.564 s ±  0.119 s    [User: 3.390 s, System: 0.224 s]
-  Range (min … max):    3.403 s …  3.667 s    4 runs
-
-Benchmark 4: node src/bench/gran.ts 1000
-  Time (mean ± σ):      3.810 s ±  0.266 s    [User: 3.701 s, System: 0.195 s]
-  Range (min … max):    3.483 s …  4.118 s    4 runs
-
-Benchmark 5: node src/bench/gran_intervals.ts 1000
-  Time (mean ± σ):      3.541 s ±  0.114 s    [User: 3.431 s, System: 0.166 s]
-  Range (min … max):    3.376 s …  3.633 s    4 runs
-
-Benchmark 6: node src/bench/gran_ultra.ts 1000
-  Time (mean ± σ):      3.498 s ±  0.054 s    [User: 3.372 s, System: 0.191 s]
-  Range (min … max):    3.437 s …  3.549 s    4 runs
-
-Benchmark 7: node src/bench/gran_unsorted.ts 1000
-  Time (mean ± σ):      3.599 s ±  0.073 s    [User: 3.521 s, System: 0.208 s]
-  Range (min … max):    3.548 s …  3.705 s    4 runs
-
-Benchmark 8: node src/bench/iv1.ts 1000
-  Time (mean ± σ):      3.680 s ±  0.153 s    [User: 3.704 s, System: 0.189 s]
-  Range (min … max):    3.542 s …  3.898 s    4 runs
-
-Benchmark 9: node src/bench/iv2.ts 1000
-  Time (mean ± σ):      3.580 s ±  0.159 s    [User: 3.546 s, System: 0.216 s]
-  Range (min … max):    3.432 s …  3.805 s    4 runs
-
-Summary
-  node src/bench/gran_ultra.ts 1000 ran
-    1.01 ± 0.07 times faster than node src/bench/arrsimple.ts 1000
-    1.01 ± 0.04 times faster than node src/bench/gran_intervals.ts 1000
-    1.02 ± 0.04 times faster than node src/bench/flatqueue.ts 1000
-    1.02 ± 0.05 times faster than node src/bench/iv2.ts 1000
-    1.03 ± 0.03 times faster than node src/bench/gran_unsorted.ts 1000
-    1.04 ± 0.07 times faster than node src/bench/endarr.ts 1000
-    1.05 ± 0.05 times faster than node src/bench/iv1.ts 1000
-    1.09 ± 0.08 times faster than node src/bench/gran.ts 1000
 
 ==========================================
 Benchmarking with 100,000 rectangles
-Testing: arrsimple endarr flatqueue gran gran_intervals gran_ultra gran_unsorted iv1 iv2
 ==========================================
 Benchmark 1: node src/bench/arrsimple.ts 100000
-  Time (mean ± σ):     34.144 s ±  0.756 s    [User: 34.223 s, System: 0.179 s]
-  Range (min … max):   33.175 s … 34.877 s    4 runs
+  Time (mean ± σ):     35.540 s ±  2.547 s    [User: 35.569 s, System: 0.179 s]
+  Range (min … max):   32.841 s … 38.471 s    4 runs
 
 Benchmark 2: node src/bench/endarr.ts 100000
-  Time (mean ± σ):      3.763 s ±  0.096 s    [User: 3.704 s, System: 0.176 s]
-  Range (min … max):    3.629 s …  3.834 s    4 runs
+  Time (mean ± σ):      4.025 s ±  0.040 s    [User: 3.893 s, System: 0.302 s]
+  Range (min … max):    3.984 s …  4.074 s    4 runs
 
 Benchmark 3: node src/bench/flatqueue.ts 100000
-  Time (mean ± σ):      3.929 s ±  0.064 s    [User: 3.868 s, System: 0.183 s]
-  Range (min … max):    3.857 s …  3.996 s    4 runs
+  Time (mean ± σ):      4.090 s ±  0.140 s    [User: 4.002 s, System: 0.251 s]
+  Range (min … max):    3.912 s …  4.255 s    4 runs
 
 Benchmark 4: node src/bench/gran.ts 100000
-  Time (mean ± σ):     12.912 s ±  0.560 s    [User: 14.317 s, System: 0.964 s]
-  Range (min … max):   12.245 s … 13.615 s    4 runs
+  Time (mean ± σ):     13.479 s ±  0.597 s    [User: 14.670 s, System: 1.190 s]
+  Range (min … max):   12.661 s … 14.018 s    4 runs
 
-Benchmark 5: node src/bench/gran_intervals.ts 100000
-  Time (mean ± σ):     11.807 s ±  0.551 s    [User: 11.978 s, System: 0.219 s]
-  Range (min … max):   11.347 s … 12.569 s    4 runs
+Benchmark 5: node src/bench/gran_ultra.ts 100000
+  Time (mean ± σ):      9.275 s ±  0.711 s    [User: 9.292 s, System: 0.190 s]
+  Range (min … max):    8.514 s …  9.886 s    4 runs
 
-Benchmark 6: node src/bench/gran_ultra.ts 100000
-  Time (mean ± σ):      8.662 s ±  0.640 s    [User: 8.655 s, System: 0.197 s]
-  Range (min … max):    8.244 s …  9.615 s    4 runs
-
-Benchmark 7: node src/bench/gran_unsorted.ts 100000
-  Time (mean ± σ):     37.915 s ±  1.480 s    [User: 39.454 s, System: 1.513 s]
-  Range (min … max):   36.028 s … 39.379 s    4 runs
-
-Benchmark 8: node src/bench/iv1.ts 100000
-  Time (mean ± σ):     41.364 s ±  1.401 s    [User: 41.984 s, System: 0.326 s]
-  Range (min … max):   40.434 s … 43.433 s    4 runs
-
-Benchmark 9: node src/bench/iv2.ts 100000
-  Time (mean ± σ):     96.353 s ±  5.446 s    [User: 96.533 s, System: 0.287 s]
-  Range (min … max):   91.889 s … 104.199 s    4 runs
+Benchmark 6: node src/bench/iv1.ts 100000
+  Time (mean ± σ):     43.322 s ±  2.552 s    [User: 43.991 s, System: 0.313 s]
+  Range (min … max):   40.038 s … 45.642 s    4 runs
 
 Summary
   node src/bench/endarr.ts 100000 ran
-    1.04 ± 0.03 times faster than node src/bench/flatqueue.ts 100000
+    1.02 ± 0.04 times faster than node src/bench/flatqueue.ts 100000
     2.30 ± 0.18 times faster than node src/bench/gran_ultra.ts 100000
-    3.14 ± 0.17 times faster than node src/bench/gran_intervals.ts 100000
-    3.43 ± 0.17 times faster than node src/bench/gran.ts 100000
-    9.07 ± 0.31 times faster than node src/bench/arrsimple.ts 100000
-   10.08 ± 0.47 times faster than node src/bench/gran_unsorted.ts 100000
-   10.99 ± 0.47 times faster than node src/bench/iv1.ts 100000
-   25.60 ± 1.59 times faster than node src/bench/iv2.ts 100000
+    3.35 ± 0.15 times faster than node src/bench/gran.ts 100000
+    8.83 ± 0.64 times faster than node src/bench/arrsimple.ts 100000
+   10.76 ± 0.64 times faster than node src/bench/iv1.ts 100000
+
 ```
 
-========================================== Benchmarking TALL screen (5000x20000)
-with 50,000 rectangles Testing: arrsimple_tall endarr_tall flatqueue_tall
-gran_tall gran_ultra_tall iv1_tall iv2_tall
-========================================== Benchmark 1: node
-src/bench/arrsimple_tall.ts Time (mean ± σ): 7.475 s ± 0.868 s [User: 7.440 s,
-System: 0.180 s] Range (min … max): 6.454 s … 8.563 s 4 runs
+#### Tall layout
 
-Benchmark 2: node src/bench/endarr_tall.ts Time (mean ± σ): 4.028 s ± 0.226 s
-[User: 3.907 s, System: 0.217 s] Range (min … max): 3.843 s … 4.319 s 4 runs
+```
 
-Benchmark 3: node src/bench/flatqueue_tall.ts Time (mean ± σ): 3.786 s ± 0.200 s
-[User: 3.677 s, System: 0.229 s] Range (min … max): 3.559 s … 4.039 s 4 runs
 
-Benchmark 4: node src/bench/gran_tall.ts Time (mean ± σ): 9.291 s ± 0.308 s
-[User: 10.579 s, System: 0.535 s] Range (min … max): 9.014 s … 9.677 s 4 runs
 
-Benchmark 5: node src/bench/gran_ultra_tall.ts Time (mean ± σ): 6.766 s ± 0.202
-s [User: 6.750 s, System: 0.156 s] Range (min … max): 6.519 s … 6.937 s 4 runs
 
-Benchmark 6: node src/bench/iv1_tall.ts Time (mean ± σ): 14.761 s ± 0.326 s
-[User: 14.949 s, System: 0.222 s] Range (min … max): 14.379 s … 15.094 s 4 runs
+==========================================
+Benchmarking TALL screen (5000x20000) with 50,000 rectangles
+Testing: arrsimple_tall endarr_tall flatqueue_tall gran_tall gran_ultra_tall iv1_tall
+==========================================
+Benchmark 1: node src/bench/arrsimple_tall.ts
+  Time (mean ± σ):      6.682 s ±  0.813 s    [User: 6.657 s, System: 0.177 s]
+  Range (min … max):    6.113 s …  7.889 s    4 runs
 
-Benchmark 7: node src/bench/iv2_tall.ts Time (mean ± σ): 38.261 s ± 1.360 s
-[User: 38.382 s, System: 0.193 s] Range (min … max): 37.285 s … 40.231 s 4 runs
+Benchmark 2: node src/bench/endarr_tall.ts
+  Time (mean ± σ):      4.516 s ±  0.474 s    [User: 4.399 s, System: 0.234 s]
+  Range (min … max):    4.014 s …  5.060 s    4 runs
 
-Summary node src/bench/flatqueue_tall.ts ran 1.06 ± 0.08 times faster than node
-src/bench/endarr_tall.ts 1.79 ± 0.11 times faster than node
-src/bench/gran_ultra_tall.ts 1.97 ± 0.25 times faster than node
-src/bench/arrsimple_tall.ts 2.45 ± 0.15 times faster than node
-src/bench/gran_tall.ts 3.90 ± 0.22 times faster than node src/bench/iv1_tall.ts
-10.11 ± 0.64 times faster than node src/bench/iv2_tall.ts
+Benchmark 3: node src/bench/flatqueue_tall.ts
+  Time (mean ± σ):      3.755 s ±  0.106 s    [User: 3.613 s, System: 0.269 s]
+  Range (min … max):    3.673 s …  3.898 s    4 runs
+
+Benchmark 4: node src/bench/gran_tall.ts
+  Time (mean ± σ):     10.399 s ±  1.161 s    [User: 11.889 s, System: 0.523 s]
+  Range (min … max):    9.065 s … 11.896 s    4 runs
+
+Benchmark 5: node src/bench/gran_ultra_tall.ts
+  Time (mean ± σ):      7.326 s ±  0.366 s    [User: 7.310 s, System: 0.169 s]
+  Range (min … max):    7.028 s …  7.799 s    4 runs
+
+Benchmark 6: node src/bench/iv1_tall.ts
+  Time (mean ± σ):     17.797 s ±  3.601 s    [User: 17.958 s, System: 0.234 s]
+  Range (min … max):   13.809 s … 21.969 s    4 runs
+
+Summary
+  node src/bench/flatqueue_tall.ts ran
+    1.20 ± 0.13 times faster than node src/bench/endarr_tall.ts
+    1.78 ± 0.22 times faster than node src/bench/arrsimple_tall.ts
+    1.95 ± 0.11 times faster than node src/bench/gran_ultra_tall.ts
+    2.77 ± 0.32 times faster than node src/bench/gran_tall.ts
+    4.74 ± 0.97 times faster than node src/bench/iv1_tall.ts
+```
 
 ## Next steps
 
