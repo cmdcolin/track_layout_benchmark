@@ -78,8 +78,6 @@ a given genomic range. It is O(log(n)) for "queries".
 This implementation I used is similar to the granular rect layout but instead of
 an array-per-row, it is a interval-tree-per-row
 
-I used two different interval tree libraries for testing hence iv1 and iv2
-
 This layout method does not require any particular sorting, though sorting may
 increase the density of the resulting layout
 
