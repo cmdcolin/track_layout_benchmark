@@ -29,16 +29,20 @@ position is greater than an element of the end-array means the feature can be
 safely 'laid out' there, and the value of that element of the end-array is
 updated to the END position of that genomic feature
 
-This layout method works best when in-coming features are sorted by their start
+This layout method works best when incoming features are sorted by their start
 position, otherwise the layout will not have good density
 
-### Granular rect layout
+## Priority queue layout
 
-The "Granular rect layout" is a system used in JBrowse 1/2. 2025 update: I had
-Claude Code make some optimizations to it that made it more interval-tree-like,
-but instead is an interval array. This is in gran_ultra
+This is very similar to the end-array layout, but instead of scanning the end-array linearly, it has a priority queue that keeps track of the first available position
 
-It works with each row being an array of binary true/false where true represents
+This is flatqueue in benchmark
+
+### Granular rect layout (w/ "bitmap" layout)
+
+The "Granular rect layout" is a system used in JBrowse 1.
+
+It works with each row being an array of binary true/false, where true represents
 the occupied space
 
 It uses a scaling factor when you are "zoomed out" so that it doesn't represent
@@ -51,6 +55,13 @@ occupied there, it checks the next row, and so on
 
 This layout method does not require any particular sorting, though sorting may
 increase the density of the resulting layout
+
+## Granular rect layout (w/ interval array)
+
+In 2025 I had Claude Code make some optimizations to make the Granular rect layout more interval-tree-like,
+but instead is now an "interval array". So instead of a bitmap, it just stores an array of intervals in each row. It uses splice to insert intervals into sorted order. This has a slightly higher upfront cost, but it is faster to query than the interval tree
+
+This is now used in JBrowse 2 (gran_ultra) in benchmark
 
 ### Interval tree
 
@@ -65,8 +76,6 @@ I used two different interval tree libraries for testing hence iv1 and iv2
 
 This layout method does not require any particular sorting, though sorting may
 increase the density of the resulting layout
-
-In 2025
 
 ## Rendered images
 
